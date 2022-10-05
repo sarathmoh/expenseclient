@@ -11,6 +11,7 @@ import { allExpenses } from '../features/expenses/ExpenseSlice';
 import { useDispatch } from 'react-redux';
 import { updateExpense } from '../features/expenses/ExpenseSlice';
 import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 // const initialValues = {
    
@@ -23,12 +24,14 @@ import {useNavigate} from 'react-router-dom';
 const Updateexpense = () => {
 
   const dispatch=useDispatch();
-  const {id}=useParams();
+  const {id:expenseid}=useParams();
   const navigate=useNavigate();
-  
+
+  const token=localStorage.getItem("token");  
+
   const expenses=useSelector(allExpenses)
   const firstArray=expenses.find(item=>{
-   return item.id===id;
+   return item.expenseid===expenseid;
   })
  
   console.log(firstArray);
@@ -44,11 +47,22 @@ const Updateexpense = () => {
 
     },
     validationSchema: updateValidation,
-    onSubmit: (values, action) => {
-    const {item,expense,date,remark}=values;  
-    dispatch(updateExpense(id,item,expense,date,remark))
-    action.resetForm();
-    navigate('/display');
+    onSubmit: async (values, action) => {
+
+
+
+      try{
+
+        const {item,expense,date,remark}=values;  
+        const response=await axios.patch('http://localhost:4000/api/updateexpense',{expenseid,item,expense,date,remark},{headers:{authtoken:token}})
+        action.resetForm();
+        navigate('/display');
+    
+      }
+      catch(error){
+        console.log(error);
+      }
+   
     },
   });
 

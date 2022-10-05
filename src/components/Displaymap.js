@@ -7,17 +7,29 @@ import { useQuery,useMutation,useQueryClient } from '@tanstack/react-query';
 import {addExpenseApi,viewExpenseApi,updateExpenseApi,deleteExpenseApi} from '../api/expenseApi';
 import { viewExpense } from '../features/expenses/ExpenseSlice';
 import axios from 'axios';
+import { useState } from 'react';
 
 const Displaymap = () => {
 
+const [display,setDisplay]=useState(true);
+const edit=()=>{
+  console.log("helooo");
+  setDisplay(()=>{
+    return (!display)
+  });
+}
+
+const [expenses,setExpenses]=useState([])
 
 const dispatch=useDispatch();
+
 const token=localStorage.getItem("token");  
 const  getExpenses=async()=>{
 
 try{
     const response=await axios.get('http://localhost:4000/api/viewexpense',{headers:{authtoken:token}})
     dispatch(viewExpense(response.data));
+    setExpenses(response.data);
 
   }
   catch(error){
@@ -27,15 +39,15 @@ try{
  
 useEffect(()=>{
   getExpenses()
-},[])
+},[display])
 
-const expenses=useSelector(allExpenses);
+// const expenses=useSelector(allExpenses);
 
 
 
 const list= expenses.map((item)=>{
 
-return <Display key={item.id} id={item.id} item={item.item} expense={item.expense} date={item.date} remark={item.remark} />
+return <Display edit={edit} key={item.expenseid} id={item.expenseid} item={item.item} expense={item.expense} date={item.date} remark={item.remark} />
 })
 return (
     <div>
