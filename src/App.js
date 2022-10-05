@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Registration from './components/Registration';
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Login  from './components/Login';
+import Addexpense from './components/Addexpense';
+import Viewexpense from './components/Viewexpense';
+import Updateexpense from './components/Updateexpense';
+import Displaymap from './components/Displaymap';
+import Common from './components/Common';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+return (
+  <BrowserRouter>
+  <Routes>
+  
+  <Route path='/login' element={<Login/>}/>
+  <Route path='/registration' element={<Registration/>}/>
+  <Route path='/' element={<Common/>}>
+
+     <Route path='addexpense' element={<Addexpense/>}/>
+     <Route path='viewexpense' element={<Viewexpense/>}/>
+     <Route path='updateexpense/:id' element={<Updateexpense/>}/>
+     <Route path='display' element={<Displaymap/>}/>
+
+  </Route>
+</Routes>
+</BrowserRouter>  
   );
 }
 
