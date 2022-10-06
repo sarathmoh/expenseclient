@@ -8,6 +8,7 @@ import {addExpenseApi,viewExpenseApi,updateExpenseApi,deleteExpenseApi} from '..
 import { viewExpense } from '../features/expenses/ExpenseSlice';
 import axios from 'axios';
 import { useState } from 'react';
+import Box from '@mui/material/Box';
 
 const Displaymap = () => {
 
@@ -15,7 +16,7 @@ const [display,setDisplay]=useState(true);
 const edit=()=>{
   console.log("helooo");
   setDisplay(()=>{
-    return (!display)
+    return (!display);
   });
 }
 
@@ -50,11 +51,17 @@ const list= expenses.map((item)=>{
 return <Display edit={edit} key={item.expenseid} id={item.expenseid} item={item.item} expense={item.expense} date={item.date} remark={item.remark} />
 })
 return (
-    <div>
+   
+  <Box sx={{
+    display: 'flex',
+    gap:'10px',
+    margin: '10px',
+    flexWrap:'wrap',
+   
+  }} >{list}</Box>
+    
 
-     {list}
-
-    </div>
+  
   )
 }
 

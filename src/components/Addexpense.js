@@ -5,11 +5,10 @@ import markpic from '../assets/notes.svg';
 import { useFormik} from 'formik';
 import { addValidation } from '../schema/Add';
 import { useDispatch } from 'react-redux';
-import { addNewExpense } from '../features/expenses/ExpenseSlice';
 import {useNavigate} from 'react-router-dom';
 import { nanoid } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { createExpense } from '../features/expenses/ExpenseSlice';
+
 
 
 const initialValues = {

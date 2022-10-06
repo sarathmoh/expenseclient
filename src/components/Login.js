@@ -40,7 +40,7 @@ const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
             localStorage.setItem('token',response.data);
 
             alert("Login successful");
-            navigate('/addexpense');
+            navigate('/');
 
           }
         
