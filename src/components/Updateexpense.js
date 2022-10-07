@@ -54,7 +54,7 @@ const Updateexpense = () => {
       try{
 
         const {item,expense,date,remark}=values;  
-        const response=await axios.patch('http://localhost:4000/api/updateexpense',{expenseid,item,expense,date,remark},{headers:{authtoken:token}})
+        const response=await axios.patch('https://protected-shore-01446.herokuapp.com/api/updateexpense',{expenseid,item,expense,date,remark},{headers:{authtoken:token}})
         action.resetForm();
         navigate('/display');
     

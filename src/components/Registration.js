@@ -29,7 +29,7 @@ const Registration = () => {
        onSubmit: async (values, action) => {
         
        try{
-            const response= await axios.post("http://localhost:4000/auth/registration",values);       
+            const response= await axios.post("https://protected-shore-01446.herokuapp.com/auth/registration",values);       
             console.log(values);
       
             if(response.status===200){

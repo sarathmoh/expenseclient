@@ -35,7 +35,7 @@ const deleteExpenseitem=async()=>{
   try{
 
     const token=localStorage.getItem("token");
-    const response=await axios.delete(`http://localhost:4000/api/deleteexpense/${id}`,{headers:{authtoken:token}})
+    const response=await axios.delete(`https://protected-shore-01446.herokuapp.com/api/deleteexpense/${id}`,{headers:{authtoken:token}})
     edit();
     navigate('/display');
 

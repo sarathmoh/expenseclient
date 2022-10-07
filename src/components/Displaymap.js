@@ -28,7 +28,7 @@ const token=localStorage.getItem("token");
 const  getExpenses=async()=>{
 
 try{
-    const response=await axios.get('http://localhost:4000/api/viewexpense',{headers:{authtoken:token}})
+    const response=await axios.get('https://protected-shore-01446.herokuapp.com/api/viewexpense',{headers:{authtoken:token}})
     dispatch(viewExpense(response.data));
     setExpenses(response.data);
 

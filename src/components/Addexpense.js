@@ -44,7 +44,7 @@ const token=localStorage.getItem("token");
 
     const id=nanoid();
 
-    const response=await axios.post('http://localhost:4000/api/addexpense',{id,item,expense,date,remark},{headers:{authtoken:token}})
+    const response=await axios.post('https://protected-shore-01446.herokuapp.com/api/addexpense',{id,item,expense,date,remark},{headers:{authtoken:token}})
 
     // dispatch(createExpense(
     // {id,item,expense,date,remark}
